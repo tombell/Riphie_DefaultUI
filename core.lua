@@ -24,6 +24,7 @@ for i, alertSubSystem in pairs(AlertFrame.alertFrameSubSystems) do
 end
 
 MainMenuBar:SetScale(cfg.actionbars.scale)
+MainMenuBar.SetScale = function() end
 
 PlayerFrame:SetUserPlaced(true)
 PlayerFrame:SetDontSavePosition(true)
@@ -72,115 +73,6 @@ CastingBarFrame.SetPoint = function() end
 CompactUnitFrameProfilesGeneralOptionsFrameHeightSlider:SetMinMaxValues(10, 150)
 CompactUnitFrameProfilesGeneralOptionsFrameWidthSlider:SetMinMaxValues(10, 150)
 
-local function FrameColors()
-	for i,v in pairs({
-		-- select(1, BurningEmbersBarFrame:GetRegions()),
-		-- select(1, BurningEmbersBarFrameEmber1:GetRegions()),
-		-- select(1, BurningEmbersBarFrameEmber2:GetRegions()),
-		-- select(1, BurningEmbersBarFrameEmber3:GetRegions()),
-		-- select(1, BurningEmbersBarFrameEmber4:GetRegions()),
-		-- select(5, ShardBarFrameShard1:GetRegions()),
-		-- select(5, ShardBarFrameShard2:GetRegions()),
-		-- select(5, ShardBarFrameShard3:GetRegions()),
-		-- select(5, ShardBarFrameShard4:GetRegions()),
-		ArenaEnemyFrame1PetFrameTexture,
-		ArenaEnemyFrame1SpecBorder,
-		ArenaEnemyFrame1Texture,
-		ArenaEnemyFrame2PetFrameTexture,
-		ArenaEnemyFrame2SpecBorder,
-		ArenaEnemyFrame2Texture,
-		ArenaEnemyFrame3PetFrameTexture,
-		ArenaEnemyFrame3SpecBorder,
-		ArenaEnemyFrame3Texture, 
-		ArenaEnemyFrame4PetFrameTexture, 
-		ArenaEnemyFrame4SpecBorder,
-		ArenaEnemyFrame4Texture,
-		ArenaEnemyFrame5PetFrameTexture,
-		ArenaEnemyFrame5SpecBorder,
-		ArenaEnemyFrame5Texture,
-		ArenaPrepFrame1SpecBorder,
-		ArenaPrepFrame1Texture,
-		ArenaPrepFrame2SpecBorder,
-		ArenaPrepFrame2Texture,
-		ArenaPrepFrame3SpecBorder,
-		ArenaPrepFrame3Texture,
-		ArenaPrepFrame4SpecBorder,
-		ArenaPrepFrame4Texture,
-		ArenaPrepFrame5SpecBorder,
-		ArenaPrepFrame5Texture,
-		Boss1TargetFrameSpellBarBorder,
-		Boss1TargetFrameTextureFrameTexture,
-		Boss2TargetFrameSpellBarBorder,
-		Boss2TargetFrameTextureFrameTexture,
-		Boss3TargetFrameSpellBarBorder,
-		Boss3TargetFrameTextureFrameTexture,
-		Boss4TargetFrameSpellBarBorder,
-		Boss4TargetFrameTextureFrameTexture,
-		Boss5TargetFrameSpellBarBorder,
-		Boss5TargetFrameTextureFrameTexture,
-		CastingBarFrameBorder,
-		CharacterFrameBg,
-		CharacterFrameTitleBg,
-		CompactRaidFrameManagerBg,
-		FocusFrameSpellBarBorder,
-		FocusFrameTextureFrameTexture,
-		FocusFrameToTTextureFrameTexture,
-		MainMenuBarLeftEndCap,
-		MainMenuBarRightEndCap, 
-		MainMenuBarTexture0,
-		MainMenuBarTexture1,
-		MainMenuBarTexture2,
-		MainMenuBarTexture3,
-		MainMenuMaxLevelBar0,
-		MainMenuMaxLevelBar1,
-		MainMenuMaxLevelBar2,
-		MainMenuMaxLevelBar3,
-		MainMenuXPBarTextureLeftCap,
-		MainMenuXPBarTextureMid,
-		MainMenuXPBarTextureRightCap,
-		MiniMapTrackingButtonBorder,
-		MinimapBorder,
-		MinimapBorderTop,
-		ObjectiveTrackerBlocksFrame.QuestHeader.Background,
-		PaladinPowerBarBG,
-		PaladinPowerBarBankBG,
-		PartyMemberFrame1PetFrameTexture,
-		PartyMemberFrame1Texture,
-		PartyMemberFrame2PetFrameTexture,
-		PartyMemberFrame2Texture,
-		PartyMemberFrame3PetFrameTexture,
-		PartyMemberFrame3Texture,
-		PartyMemberFrame4PetFrameTexture,
-		PartyMemberFrame4Texture,
-		PetFrameTexture,
-		PlayerFrameTexture,
-		ReputationWatchBarTexture0,
-		ReputationWatchBarTexture1,
-		ReputationWatchBarTexture2,
-		ReputationWatchBarTexture3,
-		ReputationXPBarTexture0,
-		ReputationXPBarTexture1,
-		ReputationXPBarTexture2,
-		ReputationXPBarTexture3,
-		RuneButtonIndividual1BorderTexture,
-		RuneButtonIndividual2BorderTexture,
-		RuneButtonIndividual3BorderTexture,
-		RuneButtonIndividual4BorderTexture,
-		RuneButtonIndividual5BorderTexture,
-		RuneButtonIndividual6BorderTexture,
-		SlidingActionBarTexture0,
-		SlidingActionBarTexture1,
-		StanceBarLeft,
-		StanceBarMiddle,
-		StanceBarRight,
-		TargetFrameSpellBarBorder,
-		TargetFrameTextureFrameTexture,
-		TargetFrameToTTextureFrameTexture,
-  }) do
-    v:SetVertexColor(.5, .5, .5, 1);
-  end
-end
-
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
@@ -189,11 +81,6 @@ frame:RegisterEvent("UNIT_FACTION")
 frame:RegisterEvent("PLAYER_LOGIN");
 frame:RegisterEvent("ADDON_LOADED");
 frame:SetScript("OnEvent", function(self, event, ...)
-  if event == "ADDON_LOADED" then
-    FrameColors()
-    return
-  end
-
   if UnitIsPlayer("target") then
     local c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
     TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
@@ -204,4 +91,3 @@ frame:SetScript("OnEvent", function(self, event, ...)
     FocusFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
   end
 end)
-
