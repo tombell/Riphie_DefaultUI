@@ -26,6 +26,11 @@ end
 MainMenuBar:SetScale(cfg.actionbars.scale)
 MainMenuBar.SetScale = function() end
 
+MultiBarLeft:SetScale(cfg.actionbars.scale)
+MultiBarLeft.SetScale = function() end
+
+MultiBarRight:SetScale(cfg.actionbars.scale)
+MultiBarRight.SetScale = function() end
 
 PlayerFrame:SetUserPlaced(true)
 PlayerFrame:SetDontSavePosition(true)
